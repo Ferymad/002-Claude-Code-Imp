@@ -1,0 +1,23 @@
+# TruthForge
+.truthforge/
+node_modules/
+*.log
+
+# Validation artifacts
+validation/screenshots/
+validation/test-results/
+validation/metrics/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+temp/

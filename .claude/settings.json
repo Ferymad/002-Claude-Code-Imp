@@ -1,0 +1,26 @@
+{
+  "auto_compact_threshold": 75,
+  "subagent_defaults": {
+    "always_require_proof": true,
+    "mock_tests_forbidden": true,
+    "consensus_minimum": 2
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/pre-commit.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "runtime_monitoring": true,
+    "failure_capture": true,
+    "checkpoint_required": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "framework_version": "1.0.0",
+  "orchestration": {
+    "context_threshold": 75,
+    "parallel_agents_max": 10,
+    "validation_requirements": {
+      "proof_required": true,
+      "consensus_breaking": true,
+      "runtime_monitoring": true
+    },
+    "rollback_triggers": [
+      "validation_failed_3x",
+      "false_consensus_detected", 
+      "runtime_divergence",
+      "user_emergency_stop"
+    ]
+  },
+  "safety": {
+    "auto_checkpoint": true,
+    "worktree_management": true,
+    "failure_memory": true
+  }
+}

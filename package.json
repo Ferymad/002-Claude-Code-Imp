@@ -1,0 +1,21 @@
+{
+  "name": "truthforge",
+  "version": "1.0.0",
+  "description": "Bulletproof AI development with proof-required validation",
+  "main": "core/validator.js",
+  "scripts": {
+    "monitor": "node core/validator.js",
+    "validate": "echo 'Use /validate command in Claude Code'",
+    "test": "echo 'TruthForge: Running tests...' && npm run test:no-mock",
+    "test:no-mock": "echo 'No test framework configured yet. Add your test command here.'"
+  },
+  "keywords": ["ai", "validation", "claude-code", "development", "testing"],
+  "author": "TruthForge Framework",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/truthforge"
+  }
+}

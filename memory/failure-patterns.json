@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "patterns": [],
+  "statistics": {
+    "total_failures_prevented": 0,
+    "unique_patterns": 0,
+    "most_common": null
+  },
+  "last_updated": null
+}
