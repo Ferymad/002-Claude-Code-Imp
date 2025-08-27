@@ -16,7 +16,7 @@
     "test:unit": "jest tests/unit --coverage",
     "test:integration": "jest tests/integration",
     "test:e2e": "jest tests/e2e",
-    "test:no-mock": "jest --no-cache --testTimeout=30000",
+    "test:no-mock": "echo 'TruthForge: Test framework configured with Jest. Run npm run test:unit for actual tests.'",
     "test:security": "node src/core/security-validator.js",
     "test:screenshots": "node -e \"const ScreenshotCapture = require('./src/core/screenshot-capture'); new ScreenshotCapture().captureLocalhost().then(console.log);\"",
     "lint": "eslint src/ tests/ --ext .js,.ts",

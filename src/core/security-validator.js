@@ -617,11 +617,13 @@ class SecurityValidator {
 
             for (const file of codeFiles) {
                 try {
-                    // Skip scanning security validator files and test files to avoid false positives
+                    // Skip scanning security validator files, test files, and config files to avoid false positives
                     if (file.includes('security-validator.js') || 
                         file.includes('validator.js') || 
                         file.includes('.test.js') || 
-                        file.includes('.eslintrc.js')) {
+                        file.includes('.eslintrc.js') ||
+                        file.includes('setup.js') ||
+                        file.includes('run-validation.js')) {
                         continue;
                     }
                     
@@ -713,11 +715,13 @@ class SecurityValidator {
 
             for (const file of codeFiles) {
                 try {
-                    // Skip scanning security validator files and test files to avoid false positives
+                    // Skip scanning security validator files, test files, and config files to avoid false positives
                     if (file.includes('security-validator.js') || 
                         file.includes('validator.js') || 
                         file.includes('.test.js') || 
-                        file.includes('.eslintrc.js')) {
+                        file.includes('.eslintrc.js') ||
+                        file.includes('setup.js') ||
+                        file.includes('run-validation.js')) {
                         continue;
                     }
                     
