@@ -3,7 +3,7 @@
 // TruthForge Validation Runner
 // Command-line interface for the comprehensive validation system
 
-const TruthForgeValidator = require('./core/validator');
+const TruthForgeValidator = require('../core/validator');
 const path = require('path');
 const fs = require('fs');
 

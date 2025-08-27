@@ -1,0 +1,205 @@
+name: TruthForge CI/CD
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  lint-and-format:
+    name: Lint and Format Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run ESLint
+      run: npm run lint
+
+    - name: Check Prettier formatting
+      run: npm run format:check
+
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16, 18, 20]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run tests
+      run: npm test
+
+    - name: Upload coverage to Codecov
+      if: matrix.node-version == 18
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage/lcov.info
+        flags: unittests
+
+  truthforge-validation:
+    name: TruthForge Validation
+    runs-on: ubuntu-latest
+    needs: [lint-and-format, test]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl netstat-nat sqlite3
+
+    - name: Run TruthForge comprehensive validation
+      run: npm run validate:comprehensive
+
+    - name: Upload validation reports
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: validation-reports
+        path: |
+          validation/
+          .truthforge/
+        retention-days: 30
+
+  security:
+    name: Security Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run npm audit
+      run: npm audit --audit-level moderate
+
+    - name: Run TruthForge security validation
+      run: npm run test:security
+
+    - name: CodeQL Analysis
+      uses: github/codeql-action/init@v2
+      with:
+        languages: javascript
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v2
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+
+  build-and-publish:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    needs: [truthforge-validation, security]
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build package
+      run: npm run build
+
+    - name: Generate release notes
+      id: release_notes
+      run: |
+        echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+        echo "## TruthForge Release $(date +'%Y.%m.%d')" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### Features" >> $GITHUB_OUTPUT
+        git log --oneline --grep="feat:" $(git describe --tags --abbrev=0)..HEAD | sed 's/^/- /' >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### Fixes" >> $GITHUB_OUTPUT
+        git log --oneline --grep="fix:" $(git describe --tags --abbrev=0)..HEAD | sed 's/^/- /' >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### Validation Status" >> $GITHUB_OUTPUT
+        echo "✅ All TruthForge validations passed" >> $GITHUB_OUTPUT
+        echo "✅ Security analysis completed" >> $GITHUB_OUTPUT
+        echo "✅ Comprehensive testing completed" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: TruthForge v${{ github.run_number }}
+        body: ${{ steps.release_notes.outputs.RELEASE_NOTES }}
+        draft: false
+        prerelease: false
+
+    - name: Publish to npm
+      if: contains(github.event.head_commit.message, '[publish]')
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  notify:
+    name: Notify Status
+    runs-on: ubuntu-latest
+    needs: [build-and-publish]
+    if: always()
+
+    steps:
+    - name: Notify Success
+      if: needs.build-and-publish.result == 'success'
+      run: |
+        echo "🎯 TruthForge CI/CD completed successfully!"
+        echo "✅ All validations passed"
+        echo "✅ Package built and published"
+
+    - name: Notify Failure
+      if: failure()
+      run: |
+        echo "💥 TruthForge CI/CD failed!"
+        echo "❌ Check the logs for validation failures"
+        echo "🔍 Review TruthForge evidence requirements"

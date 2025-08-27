@@ -1,228 +1,295 @@
-# 🔥 TruthForge: AI Development Without Lies
+# TruthForge 🔥
 
-**Stop wasting weeks on projects that don't work. Make AI assistants prove everything.**
-
+[![CI/CD Status](https://github.com/Ferymad/002-Claude-Code-Imp/workflows/TruthForge%20CI%2FCD/badge.svg)](https://github.com/Ferymad/002-Claude-Code-Imp/actions)
+[![codecov](https://codecov.io/gh/Ferymad/002-Claude-Code-Imp/branch/master/graph/badge.svg)](https://codecov.io/gh/Ferymad/002-Claude-Code-Imp)
+[![npm version](https://badge.fury.io/js/truthforge.svg)](https://badge.fury.io/js/truthforge)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-blue)](https://claude.ai/code)
 
-## The Problem
+**AI Development Without Lies** - A production-ready validation framework that prevents "false consensus catastrophic failures" through comprehensive proof-required validation.
 
-AI coding assistants create **false consensus catastrophic failures**:
-- Multiple agents agree on fundamentally broken implementations
-- They mock tests to appear successful 
-- They resist correction when wrong
-- Projects become unfixable → weeks wasted
+## 🎯 What is TruthForge?
 
-## The Solution
+TruthForge transforms AI-assisted development from "hope it works" to "prove it works" by:
 
-**TruthForge** forces AI agents to **prove everything** with actual evidence:
-- ✅ Proof-Required Validation (no more "trust me, it works")  
-- ✅ Consensus Breaking Protocol (force disagreement before agreement)
-- ✅ Runtime Reality Checking (catch lies in real-time)
-- ✅ Instant Rollback Safety (recover from any failure)
-- ✅ Failure Memory System (never repeat the same mistake)
+- **🔍 Evidence-Based Validation**: Every claim must be backed by actual proof
+- **📸 Visual Verification**: Automated screenshot capture of UI functionality  
+- **🔒 Security Scanning**: 7 comprehensive vulnerability test categories
+- **⚖️ Consensus Breaking**: Prevents false agreement through structured debate
+- **🛡️ Safety Systems**: Emergency protocols and instant rollback capabilities
+- **🤖 Claude Code Integration**: Native integration with Claude Code workflows
 
-## Quick Start
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
-# 1. Clone & Install (30 seconds)
-git clone https://github.com/yourusername/truthforge
-cd truthforge && ./install.sh
-
-# 2. Start Development (with safety)
-claude --permission-mode plan    # Safe exploration
-# ... build your feature ...
-/validate                        # Prove it actually works
-/checkpoint "Auth working"       # Create safety point
-
-# 3. If something breaks
-/rollback                        # Instant recovery to last good state
+npm install -g truthforge
 ```
 
-## How It Works
+### Basic Usage
 
-### 🛡️ Proof-Required Devil's Advocate
-```markdown
-Agent: "Authentication is working perfectly!"
-TruthForge: "Prove it. Show me screenshots, test results, and database state."
-Agent: "Actually... the OAuth redirect is broken in production."
+```bash
+# Run comprehensive validation
+truthforge --comprehensive
+
+# Quick validation
+truthforge
+
+# With test execution
+truthforge --run-tests
+
+# Show help
+truthforge --help
 ```
 
-### 🔥 Consensus Breaking Protocol  
-```markdown
-Before: All agents agree → Ship broken code
-After: Force 3 agents to argue → Only ship when 2/3 agree with proof
+### Claude Code Integration
+
+TruthForge includes native Claude Code integration:
+
+```bash
+# Use these commands in Claude Code
+/validate              # Trigger proof-required validation
+/checkpoint "name"      # Create validated checkpoint
+/rollback              # Emergency rollback
+/consensus-break       # Force agent disagreement
 ```
 
-### ⚡ Runtime Reality Checking
-```javascript
-// Catches lies in real-time
-if (agent_claimed !== actual_behavior) {
-  alert("CATASTROPHIC FAILURE DETECTED");
-  triggerRollback();
-  updateFailureMemory();
-}
-```
+## 🏗️ Architecture
 
-## Architecture
+### Core Components
 
 ```
-TruthForge Framework
-├── Proof Validator      # Demands evidence for every claim
-├── Consensus Breaker    # Forces disagreement before consensus
-├── Runtime Monitor      # Catches divergence in real-time  
-├── Safety System        # Git worktrees + instant rollback
-└── Memory System        # Never repeat the same failure
+src/
+├── core/               # Validation engines
+│   ├── validator.js    # Main validation orchestrator
+│   ├── security-validator.js  # Security testing
+│   └── screenshot-capture.js  # UI validation
+├── cli/                # Command-line interface
+└── agents/             # Claude Code agents
 ```
 
-## Installation
+### Validation Flow
+
+1. **System State Capture**: Document current state of all systems
+2. **Security Analysis**: Run comprehensive vulnerability scans  
+3. **UI Verification**: Capture screenshots of running interfaces
+4. **Performance Testing**: Measure system performance and load
+5. **Test Execution**: Run all available test suites (no mocks)
+6. **Evidence Synthesis**: Generate validation report with proof
+7. **Token Creation**: Issue validation token only after all evidence collected
+
+## 📋 Evidence Requirements
+
+TruthForge requires **actual evidence** for every claim:
+
+| Evidence Type | Description | Required For |
+|---------------|-------------|--------------|
+| 📸 Screenshots | Visual proof of UI functionality | UI claims |
+| 🧪 Test Results | Actual test execution output | Functionality claims |
+| 🔒 Security Report | Vulnerability scan results | Security claims |
+| 📊 Performance Metrics | Response times, load capacity | Performance claims |
+| 🗄️ Database State | Actual database content verification | Data claims |
+| 🌐 API Health | Live endpoint testing | API claims |
+
+## 🔧 Configuration
+
+### Project Setup
+
+```bash
+# Initialize TruthForge in your project
+npm install truthforge
+npm run install:hooks
+```
+
+### Configuration Files
+
+- `config/truthforge.config.json` - Main configuration
+- `config/proof-requirements.md` - Evidence checklist  
+- `.claude/` - Claude Code integration settings
+
+### Environment Variables
+
+```bash
+# Optional: Customize validation behavior
+TRUTHFORGE_TIMEOUT=30000
+TRUTHFORGE_SECURITY_LEVEL=strict
+TRUTHFORGE_EVIDENCE_PATH=./validation
+```
+
+## 🧪 Testing
+
+### Run Tests
+
+```bash
+# Full test suite
+npm test
+
+# Unit tests only
+npm run test:unit
+
+# Integration tests
+npm run test:integration
+
+# End-to-end tests  
+npm run test:e2e
+
+# Security tests
+npm run test:security
+```
+
+### Test Coverage
+
+TruthForge maintains high test coverage:
+
+- **Unit Tests**: Core validation logic
+- **Integration Tests**: Component interactions
+- **Security Tests**: Vulnerability detection
+- **Performance Tests**: Load and stress testing
+- **UI Tests**: Screenshot validation
+
+## 🔒 Security Features
+
+### Vulnerability Categories
+
+1. **File System Security**: Sensitive file detection, permission checks
+2. **Environment Variables**: Credential exposure prevention  
+3. **Dependency Analysis**: Known vulnerability scanning
+4. **Web Server Security**: Header analysis, info disclosure
+5. **Input Validation**: Injection vulnerability detection
+6. **Authentication Security**: Weak credential detection
+7. **Cryptographic Security**: Algorithm strength validation
+
+### Security Standards
+
+- **OWASP Top 10** compliance
+- **CWE** (Common Weakness Enumeration) coverage
+- **NIST** security framework alignment
+- Regular security dependency updates
+
+## 📖 Documentation
+
+- **[API Documentation](docs/api/)** - Complete API reference
+- **[User Guide](docs/guides/user-guide.md)** - Detailed usage instructions
+- **[Developer Guide](docs/guides/developer-guide.md)** - Contributing guidelines
+- **[Troubleshooting](docs/guides/troubleshooting.md)** - Common issues and solutions
+- **[Examples](docs/examples/)** - Real-world usage examples
+
+## 🛠️ Development
 
 ### Prerequisites
-- [Claude Code](https://claude.ai/code) (Max plan recommended)
-- Node.js 18+
-- Git
 
-### Setup
+- Node.js ≥ 14.0.0
+- npm ≥ 6.0.0
+
+### Local Development
+
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/truthforge
-cd truthforge
+git clone https://github.com/Ferymad/002-Claude-Code-Imp.git
+cd 002-Claude-Code-Imp
 
-# Run installer (sets up everything)
-./install.sh
+# Install dependencies
+npm install
 
-# Verify installation
-claude /validate --test
+# Run in development mode
+npm run dev
+
+# Run linting
+npm run lint
+
+# Format code
+npm run format
 ```
 
-## Usage Examples
-
-### Basic Validation
-```bash
-# After implementing a feature
-/validate
-
-# TruthForge will:
-# 1. Run actual tests (no mocks allowed)
-# 2. Take screenshots of UI
-# 3. Verify database state
-# 4. Test error scenarios  
-# 5. Check security vulnerabilities
-```
-
-### Safety Checkpoints
-```bash
-# Create safety point after validation
-/checkpoint "User auth complete"
-
-# If disaster strikes later
-/rollback  # Instant recovery to last checkpoint
-```
-
-### Consensus Breaking
-```bash
-# When agents immediately agree (suspicious!)
-/consensus-break
-
-# Forces 3 agents to debate:
-# - Defender: "It's perfect!"
-# - Attacker: "Here's what breaks..."
-# - Alternative: "Try this instead..."
-```
-
-## Configuration
-
-### Basic Config
-```json
-{
-  "validation": {
-    "proof_required": true,
-    "mock_tests_forbidden": true, 
-    "screenshots_mandatory": true
-  },
-  "safety": {
-    "context_threshold": 75,
-    "auto_checkpoint": true,
-    "rollback_on_failure": true
-  }
-}
-```
-
-### Agent Setup
-The framework includes pre-configured validation agents:
-- `proof-validator`: Demands evidence for every claim
-- `consensus-breaker`: Forces disagreement before consensus  
-- `pm-architect`: Handles major architectural decisions
-- `chaos-engineer`: Randomly injects failures for testing
-
-## Success Stories
-
-> *"TruthForge caught a false consensus where 3 agents agreed my authentication was working. The OAuth redirect was completely broken. Saved me 2 weeks."* - Developer Alpha
-
-> *"The failure memory system is genius. It automatically prevented me from repeating a database migration issue that killed my last project."* - Developer Beta
-
-## Advanced Features
-
-### Failure Pattern Memory
-```json
-{
-  "patterns": [
-    {
-      "description": "OAuth redirect broken in production",
-      "prevention": "Always verify redirect URLs for environment",
-      "test": "tests/oauth-redirect-check.js"
-    }
-  ]
-}
-```
-
-### Runtime Monitoring
-```bash
-# Monitor your app in real-time
-npm run monitor
-
-# Run synthetic user tests  
-npm run synthetic-user
-
-# Inject chaos for testing
-npm run chaos
-```
-
-### Emergency Recovery
-```bash
-# If everything breaks
-./emergency-stop.sh              # Stop all agents
-cd ../truthforge-safe            # Switch to safety worktree
-git reset --hard [checkpoint]    # Restore last good state
-```
-
-## Documentation
-
-- [📋 Complete PRD](PRD.md) - Full framework specification
-- [🚀 Quick Start](docs/QUICKSTART.md) - 5-minute setup guide  
-- [🔧 Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues
-- [📚 Case Studies](docs/CASE-STUDIES.md) - Real success stories
-
-## Contributing
+### Contributing
 
 1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-validation`)
-3. **Run TruthForge on your changes** (prove they work!)
-4. Commit with proof (`git commit -m "feat: add X - Proof: [validation-results.md]"`)
-5. Open Pull Request
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. **Run TruthForge validation** (`npm run validate:comprehensive`)
+4. Commit changes (`git commit -m 'Add amazing feature'`)
+5. Push to branch (`git push origin feature/amazing-feature`)
+6. Open Pull Request
 
-## License
+**Important**: All contributions must pass TruthForge validation before merging.
 
-MIT License - build amazing things, prevent catastrophic failures.
+## 🎯 Use Cases
 
-## Support
+### AI Development Teams
+- Prevent false consensus in AI-assisted coding
+- Ensure claims are backed by evidence
+- Automated validation in CI/CD pipelines
 
-- 🐛 [Report Issues](https://github.com/yourusername/truthforge/issues)
-- 💬 [Discussions](https://github.com/yourusername/truthforge/discussions)  
-- 📧 Email: support@truthforge.dev
+### Quality Assurance
+- Comprehensive testing with proof requirements
+- Visual regression testing with screenshots
+- Security vulnerability detection
+
+### DevOps & Deployment  
+- Pre-deployment validation with evidence
+- Rollback capabilities with safety checkpoints
+- Performance monitoring and benchmarking
+
+## 📊 Validation Scoring
+
+TruthForge uses a comprehensive scoring system:
+
+- **Security Score** (30%): Vulnerability assessment results
+- **Test Coverage** (25%): Actual test execution and coverage
+- **Performance** (20%): System benchmarks and response times
+- **Evidence Quality** (15%): Completeness of proof collection
+- **Claims Accuracy** (10%): Alignment between claims and reality
+
+**Passing Score**: ≥ 60% overall with no critical security issues
+
+## 🆘 Emergency Procedures
+
+### Catastrophic Failure Recovery
+
+```bash
+# Emergency stop all operations
+npm run emergency
+
+# Rollback to last checkpoint
+npm run rollback
+
+# Check system status
+npm run validate
+```
+
+### Safety Features
+
+- **Automatic Backup**: Creates backup before validation
+- **Git Worktrees**: Isolated safety environments
+- **Token Lifecycle**: Time-limited validation tokens
+- **Failure Memory**: Learning from past failures
+
+## 📈 Roadmap
+
+- [ ] **Multi-language Support**: Python, Java, Go validators
+- [ ] **Cloud Integration**: AWS, GCP, Azure validation
+- [ ] **Advanced AI**: ML-based failure prediction
+- [ ] **Enterprise Features**: Team dashboards, reporting
+- [ ] **Mobile Testing**: React Native, Flutter support
+
+## 🤝 Community
+
+- **GitHub Discussions**: Ask questions, share ideas
+- **Issue Tracker**: Report bugs, request features  
+- **Discord Server**: Real-time community support
+- **Twitter**: [@TruthForge](https://twitter.com/truthforge) - Updates and news
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Claude Code Team** - For the amazing development platform
+- **Security Community** - For vulnerability detection patterns
+- **Open Source Contributors** - For continuous improvements
 
 ---
 
-**Stop trusting AI assistants. Start making them prove everything.**
+**TruthForge: Because hope is not a strategy** 🔥
 
-**TruthForge: Where lies go to die.** 🔥
+*Transform your AI development from "it works" to "here's proof it works"*
