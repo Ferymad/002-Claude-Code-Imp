@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-08-27T00:16:15.932Z",
+  "score": 50,
+  "status": "fair",
+  "totalVulnerabilities": 2,
+  "criticalVulnerabilities": 0,
+  "highVulnerabilities": 0,
+  "recommendations": [
+    "Review and fix file permissions",
+    "Run npm audit manually to check for vulnerabilities",
+    "Use bcrypt, scrypt, or Argon2 for password hashing"
+  ]
+}
