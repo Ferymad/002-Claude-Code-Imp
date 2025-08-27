@@ -421,7 +421,7 @@ print_success "Memory system initialized ✓"
 # Create core validation logic  
 print_status "Setting up core validation logic..."
 
-cat > core/validator.js << 'EOF'
+cat > src/core/validator.js << 'EOF'
 // TruthForge Core Validator
 // Runtime validation and proof verification
 
@@ -600,9 +600,9 @@ cat > package.json << 'EOF'
   "name": "truthforge",
   "version": "1.0.0",
   "description": "Bulletproof AI development with proof-required validation",
-  "main": "core/validator.js",
+  "main": "src/core/validator.js",
   "scripts": {
-    "monitor": "node core/validator.js",
+    "monitor": "node src/core/validator.js",
     "validate": "echo 'Use /validate command in Claude Code'",
     "test": "echo 'TruthForge: Running tests...' && npm run test:no-mock",
     "test:no-mock": "echo 'No test framework configured yet. Add your test command here.'"

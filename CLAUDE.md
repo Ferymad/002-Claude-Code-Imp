@@ -81,7 +81,7 @@ The TruthForge framework operates in layers:
 ## Key Files
 
 ### Core System Files
-- `core/validator.js` - Runtime validation logic and failure detection
+- `src/core/validator.js` - Runtime validation logic and failure detection
 - `config/truthforge.config.json` - Framework configuration
 - `config/proof-requirements.md` - Mandatory evidence checklist
 - `memory/failure-patterns.json` - Database of prevented failures
@@ -113,7 +113,7 @@ The TruthForge framework operates in layers:
    - Security validation
 4. **Consensus Breaking**: If multiple agents agree immediately, force structured debate
 5. **Checkpoint**: Only after validation passes, create checkpoint with `/checkpoint`
-6. **Runtime Monitoring**: `core/validator.js` monitors for claim vs reality divergence
+6. **Runtime Monitoring**: `src/core/validator.js` monitors for claim vs reality divergence
 
 ## Emergency Procedures
 

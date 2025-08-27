@@ -89,9 +89,9 @@ async function demonstrateFramework() {
         // 8. File System Status
         console.log('📁 Framework File Status:');
         const coreFiles = [
-            'core/validator.js',
-            'core/screenshot-capture.js', 
-            'core/security-validator.js',
+            'src/core/validator.js',
+            'src/core/screenshot-capture.js', 
+            'src/core/security-validator.js',
             'checkpoint.sh',
             'rollback.sh',
             'run-validation.js',
