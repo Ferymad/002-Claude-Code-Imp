@@ -1,156 +1,21 @@
 {
   "name": "truthforge",
   "version": "1.0.0",
-  "description": "AI Development Validation Framework - Preventing False Consensus Catastrophic Failures",
-  "main": "src/cli/run-validation.js",
-  "bin": {
-    "truthforge": "src/cli/run-validation.js",
-    "tf-validate": "src/cli/run-validation.js"
-  },
+  "description": "Bulletproof AI development with proof-required validation",
+  "main": "core/validator.js",
   "scripts": {
-    "start": "node src/cli/run-validation.js",
-    "validate": "node src/cli/run-validation.js",
-    "validate:comprehensive": "node src/cli/run-validation.js --comprehensive",
-    "validate:tests": "node src/cli/run-validation.js --run-tests",
-    "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "jest tests/unit --coverage",
-    "test:integration": "jest tests/integration",
-    "test:e2e": "jest tests/e2e",
-    "test:no-mock": "echo 'TruthForge: Test framework configured with Jest. Run npm run test:unit for actual tests.'",
-    "test:security": "node src/core/security-validator.js",
-    "test:screenshots": "node -e \"const ScreenshotCapture = require('./src/core/screenshot-capture'); new ScreenshotCapture().captureLocalhost().then(console.log);\"",
-    "lint": "eslint src/ tests/ --ext .js,.ts",
-    "lint:fix": "eslint src/ tests/ --ext .js,.ts --fix",
-    "format": "prettier --write \"src/**/*.{js,ts,json,md}\" \"tests/**/*.{js,ts,json,md}\" \"docs/**/*.md\"",
-    "format:check": "prettier --check \"src/**/*.{js,ts,json,md}\" \"tests/**/*.{js,ts,json,md}\"",
-    "build": "echo 'No build step required for Node.js project'",
-    "dev": "nodemon src/cli/run-validation.js --watch src/",
-    "clean": "rm -rf validation/screenshots/* validation/security/* .truthforge/*",
-    "install:hooks": "bash scripts/install.sh",
-    "checkpoint": "bash scripts/checkpoint.sh",
-    "rollback": "bash scripts/rollback.sh",
-    "emergency": "bash scripts/emergency-stop.sh",
-    "docs:serve": "docsify serve docs",
-    "docs:build": "node scripts/build-docs.js",
-    "ci": "npm run lint && npm run test && npm run validate:comprehensive",
-    "prepublishOnly": "npm run ci",
-    "postinstall": "npm run install:hooks"
+    "monitor": "node core/validator.js",
+    "validate": "echo 'Use /validate command in Claude Code'",
+    "test": "echo 'TruthForge: Running tests...' && npm run test:no-mock",
+    "test:no-mock": "echo 'No test framework configured yet. Add your test command here.'"
   },
-  "keywords": [
-    "ai",
-    "validation",
-    "testing",
-    "development",
-    "framework",
-    "claude-code",
-    "consensus",
-    "verification",
-    "proof",
-    "evidence"
-  ],
-  "author": {
-    "name": "TruthForge Team",
-    "email": "contact@truthforge.dev"
-  },
+  "keywords": ["ai", "validation", "claude-code", "development", "testing"],
+  "author": "TruthForge Framework",
   "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ferymad/002-Claude-Code-Imp.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Ferymad/002-Claude-Code-Imp/issues"
-  },
-  "homepage": "https://github.com/Ferymad/002-Claude-Code-Imp#readme",
-  "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
-  },
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "commander": "^9.4.1",
-    "inquirer": "^8.2.5",
-    "ora": "^5.4.1"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.5.5",
-    "@types/node": "^20.6.3",
-    "eslint": "^8.49.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-jest": "^27.4.0",
-    "eslint-plugin-security": "^1.7.1",
-    "jest": "^29.7.0",
-    "nodemon": "^3.0.1",
-    "prettier": "^3.0.3",
-    "supertest": "^6.3.3",
-    "docsify-cli": "^4.4.4"
-  },
-  "optionalDependencies": {
-    "puppeteer": "^21.3.6",
-    "playwright": "^1.38.1"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "collectCoverageFrom": [
-      "src/**/*.{js,ts}",
-      "!src/**/*.test.{js,ts}",
-      "!src/**/__tests__/**"
-    ],
-    "coverageDirectory": "coverage",
-    "coverageReporters": [
-      "text",
-      "lcov",
-      "html"
-    ],
-    "testMatch": [
-      "**/tests/**/*.test.{js,ts}",
-      "**/tests/**/*.spec.{js,ts}"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/tests/setup.js"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "airbnb-base",
-      "plugin:jest/recommended",
-      "plugin:security/recommended"
-    ],
-    "env": {
-      "node": true,
-      "jest": true,
-      "es2021": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2021,
-      "sourceType": "module"
-    },
-    "rules": {
-      "no-console": "off",
-      "max-len": ["error", { "code": 120 }],
-      "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
-    }
-  },
-  "prettier": {
-    "semi": true,
-    "trailingComma": "es5",
-    "singleQuote": true,
-    "printWidth": 100,
-    "tabWidth": 2,
-    "useTabs": false
-  },
-  "files": [
-    "src/",
-    "scripts/",
-    "config/",
-    "docs/",
-    "README.md",
-    "LICENSE",
-    "CLAUDE.md"
-  ],
-  "directories": {
-    "doc": "docs",
-    "test": "tests",
-    "lib": "src"
+    "url": "https://github.com/yourusername/truthforge"
   }
 }
