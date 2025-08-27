@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-08-27T00:03:59.235Z",
+  "score": 48,
+  "status": "poor",
+  "totalVulnerabilities": 8,
+  "criticalVulnerabilities": 0,
+  "highVulnerabilities": 5,
+  "recommendations": [
+    "Review and fix file permissions",
+    "Run npm audit manually to check for vulnerabilities",
+    "Use strong cryptographic algorithms and secure random number generation"
+  ]
+}
